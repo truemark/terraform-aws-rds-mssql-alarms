@@ -3,6 +3,8 @@ Alarms specific to MSSQL on RDS.
 
 The following alarms are created by default for the instance in the variable db_instance_id. They are loosely based upon the [documentation](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/rds-metrics.html#rds-cw-metrics-instance). Anomaly alarms have a suffix of _anomaly, and can be disabled with the parameter anomaly_actions_enabled.
 
+NOTE: Performance Insights must be enabled on the target db in order for all alarms to populate.
+
 - cpu_utilization_high
 - disk_queue_depth_high
 - freeable_memory_low

@@ -13,7 +13,7 @@ data "aws_sns_topic" "notification_topic" {
 #------------------------------------------------------------------------------
 # Generate an rds instance event sub that publishes to the sns topic.
 resource "aws_db_event_subscription" "instance_sub" {
-  name      = "${var.db_instance_id}"
+  name      = var.db_instance_id
   sns_topic = data.aws_sns_topic.notification_topic.arn
 
   source_type = "db-instance"
