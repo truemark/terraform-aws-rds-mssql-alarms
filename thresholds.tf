@@ -12,7 +12,7 @@ locals {
     DBLoadNonCPUThreshold                          = max(min(var.db_load_non_cpu_threshold, 10), 95)
     DBLoadThreshold                                = min(max(var.db_load_threshold, 1), 95)
     DeadlocksPerSecondEvaluationPeriods            = min(max(var.deadlocks_per_second_evaluation_periods, 1), 10)
-    DeadlocksPerSecondThreshold                    = max(min(var.deadlocks_per_second_threshold, 10), 95)
+    DeadlocksPerSecondThreshold                    = max(min(var.deadlocks_per_second_threshold, 10), 100)
     DiskQueueDepthEvaluationPeriods                = min(max(var.disk_queue_depth_evaluation_periods, 1), 10)
     DiskQueueDepthThreshold                        = min(max(var.disk_queue_depth_threshold, 1), 100)
     FailedSQLServerAgentJobsCountEvaluationPeriods = min(max(var.failed_sql_server_agent_jobs_count_evaluation_periods, 1), 10)
@@ -33,7 +33,7 @@ locals {
     ReadLatencyThreshold                           = min(var.read_latency_threshold, 30)
     ReadThroughputEvaluationPeriods                = min(max(var.read_throughput_evaluation_periods, 1), 10)
     RecompilationsPerSecondEvaluationPeriods       = min(max(var.recompilations_per_second_evaluation_periods, 1), 10)
-    RecompilationsPerSecondThreshold               = min(var.recompilations_per_second_threshold, 30)
+    RecompilationsPerSecondThreshold               = min(var.recompilations_per_second_threshold, 30000)
     SwapUsageEvaluationPeriods                     = min(max(var.swap_usage_evaluation_periods, 1), 10)
     SwapUsageThreshold                             = min(var.swap_usage_threshold, 100000000) #100M
     TempDbAvailableDataSpaceEvaluationPeriods      = min(max(var.temp_db_available_data_space_evaluation_periods, 1), 10)
