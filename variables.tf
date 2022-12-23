@@ -18,181 +18,181 @@ variable "cpu_utilization_threshold" {
 
 variable "create_cpu_utilization_high" {
   description = "Toggle to create cpu_utilization_high serverless alarm."
-  type        = string
+  type        = bool
   default     = true
 }
 
 variable "create_db_connections_high" {
   description = "Toggle to create db_connections_high serverless alarm."
-  type        = string
+  type        = bool
   default     = true
 }
 
 variable "create_db_load_cpu_high" {
   description = "Toggle to create db_load_cpu_high serverless alarm."
-  type        = string
+  type        = bool
   default     = true
 }
 
 variable "create_db_load_high" {
   description = "Toggle to create db_load_high serverless alarm."
-  type        = string
+  type        = bool
   default     = true
 }
 
 variable "create_db_load_non_cpu_high" {
   description = "Toggle to create db_load_non_cpu_high serverless alarm."
-  type        = string
+  type        = bool
   default     = true
 }
 
 variable "create_deadlocks_per_second_anomaly" {
   description = "Toggle to create deadlocks_per_second_anomaly serverless alarm."
-  type        = string
+  type        = bool
   default     = true
 }
 
 variable "create_deadlocks_per_second_static" {
   description = "Toggle to create deadlocks_per_second_static serverless alarm."
-  type        = string
+  type        = bool
   default     = true
 }
 
 variable "create_disk_queue_depth_high" {
   description = "Toggle to create disk_queue_depth_high serverless alarm."
-  type        = string
+  type        = bool
   default     = true
 }
 
 variable "create_failed_sql_server_agent_jobs_count_high" {
   description = "Toggle to create volume_read_iops failed_sql_server_agent_jobs_count_high serverless alarm."
-  type        = string
+  type        = bool
   default     = true
 }
 
 variable "create_free_storage_space_low" {
   description = "Toggle to create free_storage_space_low serverless alarm."
-  type        = string
+  type        = bool
   default     = true
 }
 
 variable "create_freeable_memory_low" {
   description = "Toggle to create  freeable_memory_low serverless alarm."
-  type        = string
+  type        = bool
   default     = true
 }
 
 variable "create_lock_waits_per_second_anomaly" {
   description = "Toggle to create lock_waits_per_second_anomaly serverless alarm."
-  type        = string
+  type        = bool
   default     = true
 }
 
 variable "create_lock_waits_per_second_static" {
   description = "Toggle to create lock_waits_per_second_static serverless alarm."
-  type        = string
+  type        = bool
   default     = true
 }
 
 variable "create_network_receive_throughput" {
   description = "Toggle to create network_receive_throughput serverless alarm."
-  type        = string
+  type        = bool
   default     = true
 }
 
 variable "create_network_transmit_throughput" {
   description = "Toggle to create network_transmit_throughput serverless alarm."
-  type        = string
+  type        = bool
   default     = true
 }
 
 variable "create_page_life_expectancy_anomaly" {
   description = "Toggle to create create_page_life_expectancy_anomaly serverless alarm."
-  type        = string
+  type        = bool
   default     = true
 }
 
 variable "create_page_life_expectancy_static" {
   description = "Toggle to create  page_life_expectancy_static serverless alarm."
-  type        = string
+  type        = bool
   default     = true
 }
 
 variable "create_read_iops" {
   description = "Toggle to create vread_iops olume_read_iops ."
-  type        = string
+  type        = bool
   default     = true
 }
 
 variable "create_read_latency" {
   description = "Toggle to create  read_latency serverless alarm."
-  type        = string
+  type        = bool
   default     = true
 }
 
 variable "create_read_throughput" {
   description = "Toggle to create  read_throughput serverless alarm."
-  type        = string
+  type        = bool
   default     = true
 }
 
 variable "create_recompliations_per_second_anomaly" {
   description = "Toggle to ad_iops recompliations_per_second_anomaly serverless alarm."
-  type        = string
+  type        = bool
   default     = true
 }
 
 variable "create_recompliations_per_second_static" {
   description = "Toggle to ad_iops recompliations_per_second_static serverless alarm."
-  type        = string
+  type        = bool
   default     = true
 }
 
 variable "create_swap_usage" {
   description = "Toggle to create vswap_usage olume_read_iops ."
-  type        = string
+  type        = bool
   default     = true
 }
 
 variable "create_temp_db_available_data_space_low" {
   description = "Toggle to ad_iops temp_db_available_data_space_low serverless alarm."
-  type        = string
+  type        = bool
   default     = true
 }
 
 variable "create_temp_db_available_log_space_low" {
   description = "Toggle to ad_iops temp_db_available_log_space_low serverless alarm."
-  type        = string
+  type        = bool
   default     = true
 }
 
 variable "create_temp_db_data_file_usage_high" {
   description = "Toggle to ad_iops temp_db_data_file_usage_high serverless alarm."
-  type        = string
+  type        = bool
   default     = true
 }
 
 variable "create_temp_db_log_file_usage_high" {
   description = "Toggle to create  temp_db_log_file_usage_high serverless alarm."
-  type        = string
+  type        = bool
   default     = true
 }
 
 variable "create_write_iops" {
   description = "Toggle to create vwrite_iops olume_read_iops ."
-  type        = string
+  type        = bool
   default     = true
 }
 
 variable "create_write_latency" {
   description = "Toggle to create  write_latency serverless alarm."
-  type        = string
+  type        = bool
   default     = true
 }
 
 variable "create_write_throughput" {
   description = "Toggle to create  write_throughput serverless alarm."
-  type        = string
+  type        = bool
   default     = true
 }
 
@@ -259,7 +259,7 @@ variable "deadlocks_per_second_evaluation_periods" {
 variable "deadlocks_per_second_threshold" {
   description = "The current value of mssql counter Number of Deadlocks/sec at this exact moment in time."
   type        = number
-  default     = 10000
+  default     = 100
 }
 
 variable "disk_queue_depth_evaluation_periods" {
@@ -360,7 +360,7 @@ variable "page_life_expectancy_evaluation_periods" {
 }
 
 variable "page_life_expectancy_threshold" {
-  description = "The value of the mssql counter Page life expectancy at this exact moment in time."
+  description = "The value of the mssql counter Page life expectancy that must be breached for alarm."
   type        = number
   default     = 10000
 }
@@ -404,7 +404,7 @@ variable "recompilations_per_second_evaluation_periods" {
 variable "recompilations_per_second_threshold" {
   description = "The current value of mssql counter SQL Re-Compilations/sec. This is a cumulative (instance lifetime) value."
   type        = number
-  default     = 10000
+  default     = 100000
 }
 
 variable "sns_topic_name" {

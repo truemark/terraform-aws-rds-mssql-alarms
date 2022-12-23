@@ -13,7 +13,7 @@ data "aws_sns_topic" "notification_topic" {
 #------------------------------------------------------------------------------
 # Generate an rds instance event sub that publishes to the sns topic.
 resource "aws_db_event_subscription" "instance_sub" {
-  name      = "${var.db_instance_id}"
+  name      = var.db_instance_id
   sns_topic = data.aws_sns_topic.notification_topic.arn
 
   source_type = "db-instance"
@@ -655,7 +655,7 @@ resource "aws_cloudwatch_metric_alarm" "recompliations_per_second_static" {
   treat_missing_data        = "breaching"
   tags                      = var.tags
   dimensions = {
-    DBInstanceIdentifier = var.db_instance_id
+    server_name = var.db_instance_id
   }
 }
 
@@ -691,7 +691,7 @@ resource "aws_cloudwatch_metric_alarm" "recompliations_per_second_anomaly" {
       stat        = "Maximum"
 
       dimensions = {
-        DBInstanceIdentifier = var.db_instance_id
+        server_name = var.db_instance_id
       }
     }
   }
@@ -714,7 +714,7 @@ resource "aws_cloudwatch_metric_alarm" "deadlocks_per_second_static" {
   treat_missing_data        = "breaching"
   tags                      = var.tags
   dimensions = {
-    DBInstanceIdentifier = var.db_instance_id
+    server_name = var.db_instance_id
   }
 }
 
@@ -750,7 +750,7 @@ resource "aws_cloudwatch_metric_alarm" "deadlocks_per_second_anomaly" {
       stat        = "Maximum"
 
       dimensions = {
-        DBInstanceIdentifier = var.db_instance_id
+        server_name = var.db_instance_id
       }
     }
   }
@@ -773,7 +773,7 @@ resource "aws_cloudwatch_metric_alarm" "lock_waits_per_second_static" {
   treat_missing_data        = "breaching"
   tags                      = var.tags
   dimensions = {
-    DBInstanceIdentifier = var.db_instance_id
+    server_name = var.db_instance_id
   }
 }
 
@@ -809,7 +809,7 @@ resource "aws_cloudwatch_metric_alarm" "lock_waits_per_second_anomaly" {
       stat        = "Maximum"
 
       dimensions = {
-        DBInstanceIdentifier = var.db_instance_id
+        server_name = var.db_instance_id
       }
     }
   }
@@ -819,7 +819,7 @@ resource "aws_cloudwatch_metric_alarm" "lock_waits_per_second_anomaly" {
 resource "aws_cloudwatch_metric_alarm" "page_life_expectancy_static" {
   count                     = var.implement_custom_metrics_alarms ? 1 : 0
   alarm_name                = "${var.db_instance_id}_page_life_expectancy_static"
-  comparison_operator       = "GreaterThanThreshold"
+  comparison_operator       = "LessThanThreshold"
   evaluation_periods        = local.thresholds["PageLifeExpectancyEvaluationPeriods"]
   metric_name               = "page-life-expectancy"
   namespace                 = local.namespace
@@ -833,7 +833,7 @@ resource "aws_cloudwatch_metric_alarm" "page_life_expectancy_static" {
   treat_missing_data        = "breaching"
   tags                      = var.tags
   dimensions = {
-    DBInstanceIdentifier = var.db_instance_id
+    server_name = var.db_instance_id
   }
 }
 
@@ -869,7 +869,7 @@ resource "aws_cloudwatch_metric_alarm" "page_life_expectancy_anomaly" {
       stat        = "Maximum"
 
       dimensions = {
-        DBInstanceIdentifier = var.db_instance_id
+        server_name = var.db_instance_id
       }
     }
   }
