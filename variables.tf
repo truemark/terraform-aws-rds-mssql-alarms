@@ -404,7 +404,7 @@ variable "recompilations_per_second_evaluation_periods" {
 variable "recompilations_per_second_threshold" {
   description = "The current value of mssql counter SQL Re-Compilations/sec. This is a cumulative (instance lifetime) value."
   type        = number
-  default     = 100000
+  default     = 300000
 }
 
 variable "sns_topic_name" {
