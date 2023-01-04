@@ -353,16 +353,28 @@ variable "network_transmit_throughput_evaluation_periods" {
   default     = 10
 }
 
+variable "page_life_expectancy_datapoints_to_alarm" {
+  description = "The number of periods threshold must be breached to alarm."
+  type        = number
+  default     = 20
+}
+
 variable "page_life_expectancy_evaluation_periods" {
   description = "The number of periods threshold must be breached to alarm."
   type        = number
-  default     = 10
+  default     = 20
+}
+
+variable "page_life_expectancy_period" {
+  description = "The period in seconds over which the page-life-expectancy statistic is applied."
+  type        = number
+  default     = 300
 }
 
 variable "page_life_expectancy_threshold" {
   description = "The value of the mssql counter Page life expectancy that must be breached for alarm."
   type        = number
-  default     = 10000
+  default     = 300
 }
 
 variable "read_iops_evaluation_periods" {

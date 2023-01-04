@@ -823,9 +823,10 @@ resource "aws_cloudwatch_metric_alarm" "page_life_expectancy_static" {
   evaluation_periods        = local.thresholds["PageLifeExpectancyEvaluationPeriods"]
   metric_name               = "page-life-expectancy"
   namespace                 = local.namespace
-  period                    = "60"
+  period                    = local.thresholds["PageLifeExpectancyPeriod"]
   statistic                 = "Average"
   threshold                 = local.thresholds["PageLifeExpectancyThreshold"]
+  datapoints_to_alarm       = local.thresholds["PageLifeExpectancyDatapointsToAlarm"]
   alarm_description         = "The value of the Page life expectancy mssql counter as of this specific point in time."
   alarm_actions             = [data.aws_sns_topic.notification_topic.arn]
   ok_actions                = [data.aws_sns_topic.notification_topic.arn]
@@ -846,6 +847,7 @@ resource "aws_cloudwatch_metric_alarm" "page_life_expectancy_anomaly" {
   alarm_name                = "${var.db_instance_id}_page_life_expectancy_anomaly"
   comparison_operator       = "GreaterThanUpperThreshold"
   evaluation_periods        = local.thresholds["PageLifeExpectancyEvaluationPeriods"]
+  datapoints_to_alarm       = local.thresholds["PageLifeExpectancyDatapointsToAlarm"]
   insufficient_data_actions = [data.aws_sns_topic.notification_topic.arn]
   ok_actions                = [data.aws_sns_topic.notification_topic.arn]
   tags                      = var.tags
