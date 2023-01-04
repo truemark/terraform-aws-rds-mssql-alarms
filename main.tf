@@ -867,7 +867,7 @@ resource "aws_cloudwatch_metric_alarm" "page_life_expectancy_anomaly" {
     metric {
       metric_name = "page-life-expectancy"
       namespace   = local.namespace
-      period      = "60"
+      period      = local.thresholds["PageLifeExpectancyPeriod"]
       stat        = "Maximum"
 
       dimensions = {
