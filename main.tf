@@ -699,7 +699,7 @@ resource "aws_cloudwatch_metric_alarm" "recompliations_per_second_anomaly" {
 
 #----------------------------------------------------------
 resource "aws_cloudwatch_metric_alarm" "deadlocks_per_second_static" {
-  count                     = var.create_deadlocks_per_second_static ? 1 : 0
+  count                     = var.implement_custom_metrics_alarms && var.create_deadlocks_per_second_static ? 1 : 0
   alarm_name                = "${var.db_instance_id}_deadlocks_per_second_static"
   comparison_operator       = "GreaterThanThreshold"
   evaluation_periods        = local.thresholds["DeadlocksPerSecondEvaluationPeriods"]
@@ -759,7 +759,7 @@ resource "aws_cloudwatch_metric_alarm" "deadlocks_per_second_anomaly" {
 
 #----------------------------------------------------------
 resource "aws_cloudwatch_metric_alarm" "lock_waits_per_second_static" {
-  count                     = var.create_lock_waits_per_second_static ? 1 : 0
+  count                     = var.implement_custom_metrics_alarms && var.create_lock_waits_per_second_static ? 1 : 0
   alarm_name                = "${var.db_instance_id}_lock_waits_per_second_static"
   comparison_operator       = "GreaterThanThreshold"
   evaluation_periods        = local.thresholds["LockWaitsPerSecondEvaluationPeriods"]
