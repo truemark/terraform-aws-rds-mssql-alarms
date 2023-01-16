@@ -699,6 +699,7 @@ resource "aws_cloudwatch_metric_alarm" "recompliations_per_second_anomaly" {
 
 #----------------------------------------------------------
 resource "aws_cloudwatch_metric_alarm" "deadlocks_per_second_static" {
+  count                     = var.implement_custom_metrics_alarms && var.create_deadlocks_per_second_static ? 1 : 0
   alarm_name                = "${var.db_instance_id}_deadlocks_per_second_static"
   comparison_operator       = "GreaterThanThreshold"
   evaluation_periods        = local.thresholds["DeadlocksPerSecondEvaluationPeriods"]
@@ -758,6 +759,7 @@ resource "aws_cloudwatch_metric_alarm" "deadlocks_per_second_anomaly" {
 
 #----------------------------------------------------------
 resource "aws_cloudwatch_metric_alarm" "lock_waits_per_second_static" {
+  count                     = var.implement_custom_metrics_alarms && var.create_lock_waits_per_second_static ? 1 : 0
   alarm_name                = "${var.db_instance_id}_lock_waits_per_second_static"
   comparison_operator       = "GreaterThanThreshold"
   evaluation_periods        = local.thresholds["LockWaitsPerSecondEvaluationPeriods"]
@@ -817,7 +819,7 @@ resource "aws_cloudwatch_metric_alarm" "lock_waits_per_second_anomaly" {
 
 #----------------------------------------------------------
 resource "aws_cloudwatch_metric_alarm" "page_life_expectancy_static" {
-  count                     = var.implement_custom_metrics_alarms ? 1 : 0
+  count                     = var.implement_custom_metrics_alarms && var.create_page_life_expectancy_static ? 1 : 0
   alarm_name                = "${var.db_instance_id}_page_life_expectancy_static"
   comparison_operator       = "LessThanThreshold"
   evaluation_periods        = local.thresholds["PageLifeExpectancyEvaluationPeriods"]
@@ -840,7 +842,7 @@ resource "aws_cloudwatch_metric_alarm" "page_life_expectancy_static" {
 
 # LockWaitsPerSecond anomaly alarm
 resource "aws_cloudwatch_metric_alarm" "page_life_expectancy_anomaly" {
-  count                     = var.implement_anomaly_alarms ? 1 : 0
+  count                     = var.implement_anomaly_alarms && var.create_page_life_expectancy_anomaly ? 1 : 0
   actions_enabled           = var.anomaly_actions_enabled
   alarm_actions             = [data.aws_sns_topic.notification_topic.arn]
   alarm_description         = "PageLifeExpectancy anomaly detected."
