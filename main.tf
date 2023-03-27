@@ -86,6 +86,7 @@ resource "aws_cloudwatch_metric_alarm" "freeable_memory_low" {
   period                    = "60"
   statistic                 = "Average"
   threshold                 = local.thresholds["FreeableMemoryThreshold"]
+  actions_enabled           = var.enable_freeable_memory_low
   alarm_description         = "Average database freeable memory low. Performance will suffer, instance may crash."
   alarm_actions             = [data.aws_sns_topic.notification_topic.arn]
   ok_actions                = [data.aws_sns_topic.notification_topic.arn]
@@ -648,6 +649,7 @@ resource "aws_cloudwatch_metric_alarm" "recompliations_per_second_static" {
   period                    = "60"
   statistic                 = "Average"
   threshold                 = local.thresholds["RecompilationsPerSecondThreshold"]
+  actions_enabled           = var.enable_recompliations_per_second_static
   alarm_description         = "The total number of recompilations (hard parses) as of this specific point in time."
   alarm_actions             = [data.aws_sns_topic.notification_topic.arn]
   ok_actions                = [data.aws_sns_topic.notification_topic.arn]

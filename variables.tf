@@ -274,6 +274,18 @@ variable "disk_queue_depth_threshold" {
   default     = 100
 }
 
+variable "enable_freeable_memory_low" {
+  description = "Toggle to enable or disable freeable_memory alarm."
+  type        = bool
+  default     = true
+}
+
+variable "enable_recompliations_per_second_static" {
+  description = "Toggle to enable or disable recompliations_per_second_static alarm."
+  type        = bool
+  default     = true
+}
+
 variable "failed_sql_server_agent_jobs_count_evaluation_periods" {
   description = "The number of periods threshold must be breached to alarm."
   type        = number
