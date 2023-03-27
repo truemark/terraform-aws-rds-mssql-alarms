@@ -35,7 +35,7 @@ locals {
     ReadLatencyThreshold                           = min(var.read_latency_threshold, 30)
     ReadThroughputEvaluationPeriods                = min(max(var.read_throughput_evaluation_periods, 1), 10)
     RecompilationsPerSecondEvaluationPeriods       = min(max(var.recompilations_per_second_evaluation_periods, 1), 10)
-    RecompilationsPerSecondThreshold               = min(var.recompilations_per_second_threshold, 10000000)
+    RecompilationsPerSecondThreshold               = min(var.recompilations_per_second_threshold, 500000)
     SwapUsageEvaluationPeriods                     = min(max(var.swap_usage_evaluation_periods, 1), 10)
     SwapUsageThreshold                             = min(var.swap_usage_threshold, 100000000) #100M
     TempDbAvailableDataSpaceEvaluationPeriods      = min(max(var.temp_db_available_data_space_evaluation_periods, 1), 10)
