@@ -698,24 +698,38 @@ resource "aws_cloudwatch_metric_alarm" "recompliations_per_second_anomaly" {
 }
 
 #----------------------------------------------------------
-resource "aws_cloudwatch_metric_alarm" "deadlocks_per_second_static" {
+resource "aws_cloudwatch_metric_alarm" "deadlocks_per_second_diff_static" {
   count                     = var.implement_custom_metrics_alarms && var.create_deadlocks_per_second_static ? 1 : 0
-  alarm_name                = "${var.db_instance_id}_deadlocks_per_second_static"
+  alarm_name                = "${var.db_instance_id}_deadlocks_per_second_diff_static"
   comparison_operator       = "GreaterThanThreshold"
   evaluation_periods        = local.thresholds["DeadlocksPerSecondEvaluationPeriods"]
-  metric_name               = "deadlocks-per-second"
-  namespace                 = local.namespace
-  period                    = "60"
-  statistic                 = "Average"
   threshold                 = local.thresholds["DeadlocksPerSecondThreshold"]
-  alarm_description         = "The total number of deadlocks present as of this specific point in time."
+  alarm_description         = "Returns the difference between each deadlocks_per_second value in the time series and the preceding value of deadlocks_per_second from that time series."
   alarm_actions             = [data.aws_sns_topic.notification_topic.arn]
   ok_actions                = [data.aws_sns_topic.notification_topic.arn]
   insufficient_data_actions = [data.aws_sns_topic.notification_topic.arn]
   treat_missing_data        = "breaching"
   tags                      = var.tags
-  dimensions = {
-    server_name = var.db_instance_id
+  actions_enabled           = false
+
+  metric_query {
+    id          = "e1"
+    expression  = "DIFF(m1)"
+    label       = "deadlocks-per-second-diff"
+    return_data = "true"
+  }
+
+  metric_query {
+    id = "m1"
+    metric {
+      metric_name = "deadlocks-per-second"
+      namespace   = local.namespace
+      period      = "60"
+      stat        = "Maximum"
+      dimensions = {
+        server_name = var.db_instance_id
+      }
+    }
   }
 }
 
@@ -758,24 +772,37 @@ resource "aws_cloudwatch_metric_alarm" "deadlocks_per_second_anomaly" {
 }
 
 #----------------------------------------------------------
-resource "aws_cloudwatch_metric_alarm" "lock_waits_per_second_static" {
+resource "aws_cloudwatch_metric_alarm" "lock_waits_per_second_diff_static" {
   count                     = var.implement_custom_metrics_alarms && var.create_lock_waits_per_second_static ? 1 : 0
-  alarm_name                = "${var.db_instance_id}_lock_waits_per_second_static"
+  alarm_name                = "${var.db_instance_id}_lock_waits_per_second_diff_static"
   comparison_operator       = "GreaterThanThreshold"
   evaluation_periods        = local.thresholds["LockWaitsPerSecondEvaluationPeriods"]
-  metric_name               = "lock-waits-per-second"
-  namespace                 = local.namespace
-  period                    = "60"
-  statistic                 = "Average"
   threshold                 = local.thresholds["LockWaitsPerSecondThreshold"]
-  alarm_description         = "The total number of deadlocks present as of this specific point in time."
+  alarm_description         = "Returns the difference between each lock_waits_per_second value in the time series and the preceding value of lock_waits_per_second from that time series."
   alarm_actions             = [data.aws_sns_topic.notification_topic.arn]
   ok_actions                = [data.aws_sns_topic.notification_topic.arn]
   insufficient_data_actions = [data.aws_sns_topic.notification_topic.arn]
   treat_missing_data        = "breaching"
   tags                      = var.tags
-  dimensions = {
-    server_name = var.db_instance_id
+
+  metric_query {
+    id          = "e1"
+    expression  = "DIFF(m1)"
+    label       = "lock-waits-per-second-diff"
+    return_data = "true"
+  }
+
+  metric_query {
+    id = "m1"
+    metric {
+      metric_name = "lock-waits-per-second"
+      namespace   = local.namespace
+      period      = "60"
+      stat        = "Maximum"
+      dimensions = {
+        server_name = var.db_instance_id
+      }
+    }
   }
 }
 
@@ -809,7 +836,6 @@ resource "aws_cloudwatch_metric_alarm" "lock_waits_per_second_anomaly" {
       namespace   = local.namespace
       period      = "60"
       stat        = "Maximum"
-
       dimensions = {
         server_name = var.db_instance_id
       }
@@ -838,6 +864,8 @@ resource "aws_cloudwatch_metric_alarm" "page_life_expectancy_static" {
   dimensions = {
     server_name = var.db_instance_id
   }
+  actions_enabled = false
+
 }
 
 # LockWaitsPerSecond anomaly alarm
