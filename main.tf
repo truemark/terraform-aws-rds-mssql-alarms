@@ -864,8 +864,6 @@ resource "aws_cloudwatch_metric_alarm" "page_life_expectancy_static" {
   dimensions = {
     server_name = var.db_instance_id
   }
-  actions_enabled = false
-
 }
 
 # LockWaitsPerSecond anomaly alarm
