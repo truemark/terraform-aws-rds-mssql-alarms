@@ -779,9 +779,9 @@ resource "aws_cloudwatch_metric_alarm" "lock_waits_per_second_diff_static" {
   evaluation_periods        = local.thresholds["LockWaitsPerSecondEvaluationPeriods"]
   threshold                 = local.thresholds["LockWaitsPerSecondThreshold"]
   alarm_description         = "Returns the difference between each lock_waits_per_second value in the time series and the preceding value of lock_waits_per_second from that time series."
-  alarm_actions             = [data.aws_sns_topic.notification_topic.arn]
-  ok_actions                = [data.aws_sns_topic.notification_topic.arn]
-  insufficient_data_actions = [data.aws_sns_topic.notification_topic.arn]
+  alarm_actions             = var.lock_waits_per_second_actions_enabled == true ? [data.aws_sns_topic.notification_topic.arn] : null
+  ok_actions                = var.lock_waits_per_second_actions_enabled == true ? [data.aws_sns_topic.notification_topic.arn] : null
+  insufficient_data_actions = var.lock_waits_per_second_actions_enabled == true ? [data.aws_sns_topic.notification_topic.arn] : null
   treat_missing_data        = "breaching"
   tags                      = var.tags
 
@@ -856,9 +856,9 @@ resource "aws_cloudwatch_metric_alarm" "page_life_expectancy_static" {
   threshold                 = local.thresholds["PageLifeExpectancyThreshold"]
   datapoints_to_alarm       = local.thresholds["PageLifeExpectancyDatapointsToAlarm"]
   alarm_description         = "The value of the Page life expectancy mssql counter as of this specific point in time."
-  alarm_actions             = [data.aws_sns_topic.notification_topic.arn]
-  ok_actions                = [data.aws_sns_topic.notification_topic.arn]
-  insufficient_data_actions = [data.aws_sns_topic.notification_topic.arn]
+  alarm_actions             = var.page_life_expectancy_actions_enabled == true ? [data.aws_sns_topic.notification_topic.arn] : null
+  ok_actions                = var.page_life_expectancy_actions_enabled == true ? [data.aws_sns_topic.notification_topic.arn] : null
+  insufficient_data_actions = var.page_life_expectancy_actions_enabled == true ? [data.aws_sns_topic.notification_topic.arn] : null
   treat_missing_data        = "breaching"
   tags                      = var.tags
   dimensions = {
@@ -876,8 +876,8 @@ resource "aws_cloudwatch_metric_alarm" "page_life_expectancy_anomaly" {
   comparison_operator       = "GreaterThanUpperThreshold"
   evaluation_periods        = local.thresholds["PageLifeExpectancyEvaluationPeriods"]
   datapoints_to_alarm       = local.thresholds["PageLifeExpectancyDatapointsToAlarm"]
-  insufficient_data_actions = [data.aws_sns_topic.notification_topic.arn]
-  ok_actions                = [data.aws_sns_topic.notification_topic.arn]
+  ok_actions                = var.page_life_expectancy_actions_enabled == true ? [data.aws_sns_topic.notification_topic.arn] : null
+  insufficient_data_actions = var.page_life_expectancy_actions_enabled == true ? [data.aws_sns_topic.notification_topic.arn] : null
   tags                      = var.tags
   threshold_metric_id       = "e1"
   treat_missing_data        = "breaching"

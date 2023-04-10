@@ -94,6 +94,7 @@ variable "create_lock_waits_per_second_static" {
   default     = true
 }
 
+
 variable "create_network_receive_throughput" {
   description = "Toggle to create network_receive_throughput serverless alarm."
   type        = bool
@@ -149,7 +150,7 @@ variable "create_recompliations_per_second_static" {
 }
 
 variable "create_swap_usage" {
-  description = "Toggle to create vswap_usage olume_read_iops ."
+  description = "Toggle to create swap_usage alarm."
   type        = bool
   default     = true
 }
@@ -250,6 +251,12 @@ variable "db_load_threshold" {
   default     = 95
 }
 
+variable "deadlocks_per_second_actions_enabled" {
+  description = "Switch to enable all actions defined for deadlocks-per-second-diff alarm."
+  type        = bool
+  default     = true
+}
+
 variable "deadlocks_per_second_evaluation_periods" {
   description = "The number of periods threshold must be breached to alarm."
   type        = number
@@ -324,6 +331,12 @@ variable "implement_anomaly_alarms" {
   default     = false
 }
 
+variable "lock_waits_per_second_actions_enabled" {
+  description = "Switch to enable all actions defined for lock-waits-per-second-diff alarm."
+  type        = bool
+  default     = true
+}
+
 variable "lock_waits_per_second_evaluation_periods" {
   description = "The number of periods threshold must be breached to alarm."
   type        = number
@@ -351,6 +364,12 @@ variable "network_transmit_throughput_evaluation_periods" {
   description = "The number of periods threshold must be breached to alarm."
   type        = number
   default     = 10
+}
+
+variable "page_life_expectancy_actions_enabled" {
+  description = "Switch to enable all actions defined for page-life-expectancy-diff alarm."
+  type        = bool
+  default     = true
 }
 
 variable "page_life_expectancy_datapoints_to_alarm" {
@@ -405,6 +424,12 @@ variable "read_throughput_evaluation_periods" {
   description = "The number of periods threshold must be breached to alarm."
   type        = number
   default     = 10
+}
+
+variable "recompilations_per_second_actions_enabled" {
+  description = "Switch to enable all actions defined for recompliations-per-second-diff alarm."
+  type        = bool
+  default     = true
 }
 
 variable "recompilations_per_second_evaluation_periods" {
