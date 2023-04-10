@@ -150,7 +150,7 @@ variable "create_recompliations_per_second_static" {
 }
 
 variable "create_swap_usage" {
-  description = "Toggle to create swap_usage olume_read_iops ."
+  description = "Toggle to create swap_usage alarm."
   type        = bool
   default     = true
 }
