@@ -639,8 +639,9 @@ resource "aws_cloudwatch_metric_alarm" "write_throughput" {
 }
 
 #----------------------------------------------------------
-resource "aws_cloudwatch_metric_alarm" "recompliations_per_second_static" {
-  alarm_name                = "${var.db_instance_id}_recompliations_per_second_static"
+resource "aws_cloudwatch_metric_alarm" "recompilations_per_second_static" {
+  count                     = var.create_recompilations_per_second_static ? 1 : 0
+  alarm_name                = "${var.db_instance_id}_recompilations_per_second_static"
   comparison_operator       = "GreaterThanThreshold"
   evaluation_periods        = local.thresholds["RecompilationsPerSecondEvaluationPeriods"]
   metric_name               = "recompilations-per-second"
@@ -660,12 +661,12 @@ resource "aws_cloudwatch_metric_alarm" "recompliations_per_second_static" {
 }
 
 # RecompilationsPerSecond anomaly alarm
-resource "aws_cloudwatch_metric_alarm" "recompliations_per_second_anomaly" {
+resource "aws_cloudwatch_metric_alarm" "recompilations_per_second_anomaly" {
   count                     = var.implement_anomaly_alarms ? 1 : 0
   actions_enabled           = var.anomaly_actions_enabled
   alarm_actions             = [data.aws_sns_topic.notification_topic.arn]
   alarm_description         = "RecompilationsPerSecond anomaly detected."
-  alarm_name                = "${var.db_instance_id}_recompliations_per_second_anomaly"
+  alarm_name                = "${var.db_instance_id}_recompilations_per_second_anomaly"
   comparison_operator       = "GreaterThanUpperThreshold"
   evaluation_periods        = local.thresholds["RecompilationsPerSecondEvaluationPeriods"]
   insufficient_data_actions = [data.aws_sns_topic.notification_topic.arn]
@@ -677,7 +678,7 @@ resource "aws_cloudwatch_metric_alarm" "recompliations_per_second_anomaly" {
   metric_query {
     id          = "e1"
     expression  = "ANOMALY_DETECTION_BAND(m1)"
-    label       = "recompliations-per-second (Expected)"
+    label       = "recompilations-per-second (Expected)"
     return_data = "true"
   }
 
