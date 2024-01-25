@@ -27,8 +27,8 @@ NOTE: Performance Insights must be enabled on the target db in order for all ala
 - write_iops
 - write_latency
 - write_throughput
-- recompliations_per_second_static
-- recompliations_per_second_anomaly
+- recompilations_per_second_static
+- recompilations_per_second_anomaly
 - deadlocks_per_second_static
 - deadlocks_per_second_anomaly
 - lock_waits_per_second_static
