@@ -137,14 +137,14 @@ variable "create_read_throughput" {
   default     = true
 }
 
-variable "create_recompliations_per_second_anomaly" {
-  description = "Toggle to ad_iops recompliations_per_second_anomaly serverless alarm."
+variable "create_recompilations_per_second_anomaly" {
+  description = "Toggle to ad_iops recompilations_per_second_anomaly serverless alarm."
   type        = bool
   default     = true
 }
 
-variable "create_recompliations_per_second_static" {
-  description = "Toggle to ad_iops recompliations_per_second_static serverless alarm."
+variable "create_recompilations_per_second_static" {
+  description = "Toggle to ad_iops recompilations_per_second_static serverless alarm."
   type        = bool
   default     = true
 }
@@ -427,7 +427,7 @@ variable "read_throughput_evaluation_periods" {
 }
 
 variable "recompilations_per_second_actions_enabled" {
-  description = "Switch to enable all actions defined for recompliations-per-second-diff alarm."
+  description = "Switch to enable all actions defined for recompilations-per-second-diff alarm."
   type        = bool
   default     = true
 }
