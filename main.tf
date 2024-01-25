@@ -335,7 +335,7 @@ resource "aws_cloudwatch_metric_alarm" "network_receive_throughput" {
 
 # NetworkTransmitThroughput anomaly alarm
 resource "aws_cloudwatch_metric_alarm" "network_transmit_throughput" {
-  count                     = var.implement_custom_metrics_alarms ? 1 : 0
+  count                     = var.create_network_transmit_throughput ? 1 : 0
   actions_enabled           = var.anomaly_actions_enabled
   alarm_actions             = [data.aws_sns_topic.notification_topic.arn]
   alarm_description         = "NetworkTransmitThroughput anomaly detected."
@@ -700,7 +700,7 @@ resource "aws_cloudwatch_metric_alarm" "recompilations_per_second_anomaly" {
 
 #----------------------------------------------------------
 resource "aws_cloudwatch_metric_alarm" "deadlocks_per_second_diff_static" {
-  count                     = var.implement_custom_metrics_alarms && var.create_deadlocks_per_second_static ? 1 : 0
+  count                     = var.create_deadlocks_per_second_static ? 1 : 0
   alarm_name                = "${var.db_instance_id}_deadlocks_per_second_diff_static"
   comparison_operator       = "GreaterThanThreshold"
   evaluation_periods        = local.thresholds["DeadlocksPerSecondEvaluationPeriods"]
@@ -774,7 +774,7 @@ resource "aws_cloudwatch_metric_alarm" "deadlocks_per_second_anomaly" {
 
 #----------------------------------------------------------
 resource "aws_cloudwatch_metric_alarm" "lock_waits_per_second_diff_static" {
-  count                     = var.implement_custom_metrics_alarms && var.create_lock_waits_per_second_static ? 1 : 0
+  count                     = var.create_lock_waits_per_second_static ? 1 : 0
   alarm_name                = "${var.db_instance_id}_lock_waits_per_second_diff_static"
   comparison_operator       = "GreaterThanThreshold"
   evaluation_periods        = local.thresholds["LockWaitsPerSecondEvaluationPeriods"]
@@ -846,7 +846,7 @@ resource "aws_cloudwatch_metric_alarm" "lock_waits_per_second_anomaly" {
 
 #----------------------------------------------------------
 resource "aws_cloudwatch_metric_alarm" "page_life_expectancy_static" {
-  count                     = var.implement_custom_metrics_alarms && var.create_page_life_expectancy_static ? 1 : 0
+  count                     = var.create_page_life_expectancy_static ? 1 : 0
   alarm_name                = "${var.db_instance_id}_page_life_expectancy_static"
   comparison_operator       = "LessThanThreshold"
   evaluation_periods        = local.thresholds["PageLifeExpectancyEvaluationPeriods"]
