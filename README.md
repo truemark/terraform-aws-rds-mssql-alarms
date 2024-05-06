@@ -40,5 +40,5 @@ Each alarm has the following variables, set with sensible defaults. All threshol
 1. create_[alarm-name], which controls whether or not the alarm is created. Default is true. This variable offers the ability to not create a specific alarm. 
 2. [alarm-name]-threshold. The number which must be exceeded to generate an alert.
 3. [alarm-name]-evaluation-periods. The number of evaluation periods that must be exceeded to generate an alert.
-4. [alarm_actions_enabled]. Whether or not to enable alarm actions. Default is true.
+4. [alarm-name]_enabled. Whether or not to enable alarm actions. Default is true.
 
