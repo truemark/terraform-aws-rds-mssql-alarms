@@ -179,12 +179,6 @@ variable "create_recompilations_per_second_static" {
   default     = true
 }
 
-# variable "recompilations_per_second_static_actions_enabled" {
-#   description = "Switch to enable all actions defined for recompilations per second static alarm."
-#   type        = bool
-#   default     = true
-# }
-
 variable "create_swap_usage" {
   description = "Toggle to create swap_usage alarm."
   type        = bool
