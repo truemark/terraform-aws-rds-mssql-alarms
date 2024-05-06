@@ -38,6 +38,7 @@ resource "aws_db_event_subscription" "instance_sub" {
 #------------------------------------------------------------------------------
 # Define all alarms.
 resource "aws_cloudwatch_metric_alarm" "cpu_utilization_high" {
+  actions_enabled           = var.cpu_utilization_high_actions_enabled
   alarm_name                = "${var.db_instance_id}_cpu_utilization_high_static"
   comparison_operator       = "GreaterThanThreshold"
   evaluation_periods        = local.thresholds["CPUUtilizationEvaluationPeriods"]
@@ -58,6 +59,7 @@ resource "aws_cloudwatch_metric_alarm" "cpu_utilization_high" {
 }
 
 resource "aws_cloudwatch_metric_alarm" "disk_queue_depth_high" {
+  actions_enabled           = var.disk_queue_depth_high_actions_enabled
   alarm_name                = "${var.db_instance_id}_disk_queue_depth_high_static"
   comparison_operator       = "GreaterThanThreshold"
   evaluation_periods        = local.thresholds["DiskQueueDepthEvaluationPeriods"]
@@ -78,6 +80,7 @@ resource "aws_cloudwatch_metric_alarm" "disk_queue_depth_high" {
 }
 
 resource "aws_cloudwatch_metric_alarm" "freeable_memory_low" {
+  actions_enabled           = var.freeable_memory_low_actions_enabled
   alarm_name                = "${var.db_instance_id}_freeable_memory_low_static"
   comparison_operator       = "LessThanThreshold"
   evaluation_periods        = local.thresholds["FreeableMemoryEvaluationPeriods"]
@@ -98,6 +101,7 @@ resource "aws_cloudwatch_metric_alarm" "freeable_memory_low" {
 }
 
 resource "aws_cloudwatch_metric_alarm" "free_storage_space_low" {
+  actions_enabled     = var.free_storage_space_low_actions_enabled
   alarm_name          = "${var.db_instance_id}_free_storage_space_low_static"
   comparison_operator = "LessThanThreshold"
   evaluation_periods  = local.thresholds["FreeStorageSpaceEvaluationPeriods"]
@@ -116,6 +120,7 @@ resource "aws_cloudwatch_metric_alarm" "free_storage_space_low" {
 }
 
 resource "aws_cloudwatch_metric_alarm" "db_connections_high" {
+  actions_enabled           = var.db_connections_high_actions_enabled
   alarm_name                = "${var.db_instance_id}_db_connections_high_static"
   comparison_operator       = "GreaterThanThreshold"
   evaluation_periods        = local.thresholds["DatabaseConnectionsEvaluationPeriods"]
@@ -136,6 +141,7 @@ resource "aws_cloudwatch_metric_alarm" "db_connections_high" {
 }
 
 resource "aws_cloudwatch_metric_alarm" "db_load_high" {
+  actions_enabled           = var.db_load_high_actions_enabled
   alarm_name                = "${var.db_instance_id}_db_load_high_static"
   comparison_operator       = "GreaterThanThreshold"
   evaluation_periods        = local.thresholds["DBLoadEvaluationPeriods"]
@@ -156,6 +162,7 @@ resource "aws_cloudwatch_metric_alarm" "db_load_high" {
 }
 
 resource "aws_cloudwatch_metric_alarm" "db_load_cpu_high" {
+  actions_enabled           = var.db_load_cpu_high_actions_enabled
   alarm_name                = "${var.db_instance_id}_db_load_cpu_high_static"
   comparison_operator       = "GreaterThanThreshold"
   evaluation_periods        = local.thresholds["DBLoadCPUEvaluationPeriods"]
@@ -176,6 +183,7 @@ resource "aws_cloudwatch_metric_alarm" "db_load_cpu_high" {
 }
 
 resource "aws_cloudwatch_metric_alarm" "db_load_non_cpu_high" {
+  actions_enabled           = var.db_load_non_cpu_high_actions_enabled
   alarm_name                = "${var.db_instance_id}_db_load_non_cpu_high_static"
   comparison_operator       = "GreaterThanThreshold"
   evaluation_periods        = local.thresholds["DBLoadNonCPUEvaluationPeriods"]
@@ -196,6 +204,7 @@ resource "aws_cloudwatch_metric_alarm" "db_load_non_cpu_high" {
 }
 
 resource "aws_cloudwatch_metric_alarm" "failed_sql_server_agent_jobs_count_high" {
+  actions_enabled           = var.failed_sql_server_agent_jobs_count_high_actions_enabled
   alarm_name                = "${var.db_instance_id}_failed_sql_server_agent_jobs_count_static"
   comparison_operator       = "GreaterThanThreshold"
   evaluation_periods        = local.thresholds["FailedSQLServerAgentJobsCountEvaluationPeriods"]
@@ -216,6 +225,7 @@ resource "aws_cloudwatch_metric_alarm" "failed_sql_server_agent_jobs_count_high"
 }
 
 resource "aws_cloudwatch_metric_alarm" "temp_db_available_data_space_low" {
+  actions_enabled           = var.temp_db_available_data_space_low_actions_enabled
   alarm_name                = "${var.db_instance_id}_temp_db_available_data_space_low_static"
   comparison_operator       = "LessThanThreshold"
   evaluation_periods        = local.thresholds["TempDbAvailableDataSpaceEvaluationPeriods"]
@@ -236,6 +246,7 @@ resource "aws_cloudwatch_metric_alarm" "temp_db_available_data_space_low" {
 }
 
 resource "aws_cloudwatch_metric_alarm" "temp_db_available_log_space_low" {
+  actions_enabled           = var.temp_db_available_log_space_low_actions_enabled
   alarm_name                = "${var.db_instance_id}_temp_db_available_log_space_low_static"
   comparison_operator       = "LessThanThreshold"
   evaluation_periods        = local.thresholds["TempDbAvailableLogSpaceEvaluationPeriods"]
@@ -256,6 +267,7 @@ resource "aws_cloudwatch_metric_alarm" "temp_db_available_log_space_low" {
 }
 
 resource "aws_cloudwatch_metric_alarm" "temp_db_data_file_usage_high" {
+  actions_enabled           = var.temp_db_data_file_usage_high_actions_enabled
   alarm_name                = "${var.db_instance_id}_temp_db_data_file_usage_high_static"
   comparison_operator       = "GreaterThanThreshold"
   evaluation_periods        = local.thresholds["TempDbDataFileUsageEvaluationPeriods"]
@@ -276,6 +288,7 @@ resource "aws_cloudwatch_metric_alarm" "temp_db_data_file_usage_high" {
 }
 
 resource "aws_cloudwatch_metric_alarm" "temp_db_log_file_usage_high" {
+  actions_enabled           = var.temp_db_log_file_usage_high_actions_enabled
   alarm_name                = "${var.db_instance_id}_temp_db_log_file_usage_high_static"
   comparison_operator       = "GreaterThanThreshold"
   evaluation_periods        = local.thresholds["TempDbLogFileUsageEvaluationPeriods"]
@@ -641,6 +654,7 @@ resource "aws_cloudwatch_metric_alarm" "write_throughput" {
 #----------------------------------------------------------
 resource "aws_cloudwatch_metric_alarm" "recompilations_per_second_static" {
   count                     = var.create_recompilations_per_second_static ? 1 : 0
+  actions_enabled           = var.recompilations_per_second_actions_enabled
   alarm_name                = "${var.db_instance_id}_recompilations_per_second_static"
   comparison_operator       = "GreaterThanThreshold"
   evaluation_periods        = local.thresholds["RecompilationsPerSecondEvaluationPeriods"]
@@ -711,7 +725,7 @@ resource "aws_cloudwatch_metric_alarm" "deadlocks_per_second_diff_static" {
   insufficient_data_actions = [data.aws_sns_topic.notification_topic.arn]
   treat_missing_data        = "breaching"
   tags                      = var.tags
-  actions_enabled           = false
+  actions_enabled           = var.deadlocks_per_second_diff_static_actions_enabled
 
   metric_query {
     id          = "e1"
@@ -775,6 +789,7 @@ resource "aws_cloudwatch_metric_alarm" "deadlocks_per_second_anomaly" {
 #----------------------------------------------------------
 resource "aws_cloudwatch_metric_alarm" "lock_waits_per_second_diff_static" {
   count                     = var.create_lock_waits_per_second_static ? 1 : 0
+  actions_enabled           = var.lock_waits_per_second_actions_enabled
   alarm_name                = "${var.db_instance_id}_lock_waits_per_second_diff_static"
   comparison_operator       = "GreaterThanThreshold"
   evaluation_periods        = local.thresholds["LockWaitsPerSecondEvaluationPeriods"]
@@ -847,6 +862,7 @@ resource "aws_cloudwatch_metric_alarm" "lock_waits_per_second_anomaly" {
 #----------------------------------------------------------
 resource "aws_cloudwatch_metric_alarm" "page_life_expectancy_static" {
   count                     = var.create_page_life_expectancy_static ? 1 : 0
+  actions_enabled           = var.page_life_expectancy_actions_enabled
   alarm_name                = "${var.db_instance_id}_page_life_expectancy_static"
   comparison_operator       = "LessThanThreshold"
   evaluation_periods        = local.thresholds["PageLifeExpectancyEvaluationPeriods"]
