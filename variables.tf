@@ -404,7 +404,7 @@ variable "implement_anomaly_alarms" {
   default     = false
 }
 
-variable "lock_waits_per_second_actions_enabled" {
+variable "lock_waits_per_second_diff_static_actions_enabled" {
   description = "Switch to enable all actions defined for lock-waits-per-second-diff alarm."
   type        = bool
   default     = true
@@ -439,7 +439,13 @@ variable "network_transmit_throughput_evaluation_periods" {
   default     = 10
 }
 
-variable "page_life_expectancy_actions_enabled" {
+variable "page_life_expectancy_static_actions_enabled" {
+  description = "Switch to enable all actions defined for page-life-expectancy-diff alarm."
+  type        = bool
+  default     = true
+}
+
+variable "page_life_expectancy_anomaly_actions_enabled" {
   description = "Switch to enable all actions defined for page-life-expectancy-diff alarm."
   type        = bool
   default     = true
@@ -499,8 +505,8 @@ variable "read_throughput_evaluation_periods" {
   default     = 10
 }
 
-variable "recompilations_per_second_actions_enabled" {
-  description = "Switch to enable all actions defined for recompilations-per-second-diff alarm."
+variable "recompilations_per_second_static_actions_enabled" {
+  description = "Switch to enable all actions defined for recompilations per second static alarm."
   type        = bool
   default     = true
 }
