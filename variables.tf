@@ -4,6 +4,12 @@ variable "anomaly_actions_enabled" {
   default     = false
 }
 
+variable "cpu_utilization_high_actions_enabled" {
+  description = "Switch to enable all actions defined for cpu utilization high alarm."
+  type        = bool
+  default     = true
+}
+
 variable "cpu_utilization_evaluation_periods" {
   description = "The number of periods threshold must be breached to alarm."
   type        = number
@@ -34,6 +40,18 @@ variable "create_db_load_cpu_high" {
   default     = true
 }
 
+variable "db_load_cpu_high_actions_enabled" {
+  description = "Switch to enable all actions defined for db load cpu high alarm."
+  type        = bool
+  default     = true
+}
+
+variable "db_load_high_actions_enabled" {
+  description = "Switch to enable all actions defined for db load high alarm."
+  type        = bool
+  default     = true
+}
+
 variable "create_db_load_high" {
   description = "Toggle to create db_load_high serverless alarm."
   type        = bool
@@ -42,6 +60,12 @@ variable "create_db_load_high" {
 
 variable "create_db_load_non_cpu_high" {
   description = "Toggle to create db_load_non_cpu_high serverless alarm."
+  type        = bool
+  default     = true
+}
+
+variable "db_load_non_cpu_high_actions_enabled" {
+  description = "Switch to enable all actions defined for db load non cpu high alarm."
   type        = bool
   default     = true
 }
@@ -65,7 +89,13 @@ variable "create_disk_queue_depth_high" {
 }
 
 variable "create_failed_sql_server_agent_jobs_count_high" {
-  description = "Toggle to create volume_read_iops failed_sql_server_agent_jobs_count_high serverless alarm."
+  description = "Toggle to create volume_read_iops failed sql server agent jobs count high serverless alarm."
+  type        = bool
+  default     = true
+}
+
+variable "failed_sql_server_agent_jobs_count_high_actions_enabled" {
+  description = "Switch to enable all actions defined for failed sql server agent jobs count high alarm."
   type        = bool
   default     = true
 }
@@ -161,8 +191,20 @@ variable "create_temp_db_available_data_space_low" {
   default     = true
 }
 
+variable "temp_db_available_data_space_low_actions_enabled" {
+  description = "Switch to enable all actions defined for temp db available data space low alarm."
+  type        = bool
+  default     = true
+}
+
 variable "create_temp_db_available_log_space_low" {
   description = "Toggle to ad_iops temp_db_available_log_space_low serverless alarm."
+  type        = bool
+  default     = true
+}
+
+variable "temp_db_available_log_space_low_actions_enabled" {
+  description = "Switch to enable all actions defined for temp db available log space low alarm."
   type        = bool
   default     = true
 }
@@ -175,6 +217,12 @@ variable "create_temp_db_data_file_usage_high" {
 
 variable "create_temp_db_log_file_usage_high" {
   description = "Toggle to create  temp_db_log_file_usage_high serverless alarm."
+  type        = bool
+  default     = true
+}
+
+variable "temp_db_log_file_usage_high_actions_enabled" {
+  description = "Switch to enable all actions defined for temp db log file usage high alarm."
   type        = bool
   default     = true
 }
@@ -193,6 +241,12 @@ variable "create_write_latency" {
 
 variable "create_write_throughput" {
   description = "Toggle to create  write_throughput serverless alarm."
+  type        = bool
+  default     = true
+}
+
+variable "db_connections_high_actions_enabled" {
+  description = "Switch to enable all actions defined for db connections high alarm."
   type        = bool
   default     = true
 }
@@ -251,8 +305,8 @@ variable "db_load_threshold" {
   default     = 95
 }
 
-variable "deadlocks_per_second_actions_enabled" {
-  description = "Switch to enable all actions defined for deadlocks-per-second-diff alarm."
+variable "deadlocks_per_second_diff_static_actions_enabled" {
+  description = "Switch to enable all actions defined for deadlocks per second diff static alarm."
   type        = bool
   default     = true
 }
@@ -267,6 +321,12 @@ variable "deadlocks_per_second_threshold" {
   description = "The current value of mssql counter Number of Deadlocks/sec at this exact moment in time."
   type        = number
   default     = 100
+}
+
+variable "disk_queue_depth_high_actions_enabled" {
+  description = "Switch to enable all actions defined for disk queue depth alarm."
+  type        = bool
+  default     = true
 }
 
 variable "disk_queue_depth_evaluation_periods" {
@@ -293,6 +353,13 @@ variable "failed_sql_server_agent_jobs_count_threshold" {
   default     = 5
 }
 
+variable "free_storage_space_low_actions_enabled" {
+  description = "Switch to enable all actions defined for free storage space low alarm."
+  type        = bool
+  default     = true
+}
+
+
 variable "free_storage_space_evaluation_periods" {
   description = "The number of periods threshold must be breached to alarm."
   type        = number
@@ -305,6 +372,12 @@ variable "free_storage_space_threshold" {
   default     = 2000000000
 
   # 2 Gigabyte in Byte
+}
+
+variable "freeable_memory_low_actions_enabled" {
+  description = "Switch to enable all actions defined for freeable memory low alarm."
+  type        = bool
+  default     = true
 }
 
 variable "freeable_memory_evaluation_periods" {
@@ -331,7 +404,7 @@ variable "implement_anomaly_alarms" {
   default     = false
 }
 
-variable "lock_waits_per_second_actions_enabled" {
+variable "lock_waits_per_second_diff_static_actions_enabled" {
   description = "Switch to enable all actions defined for lock-waits-per-second-diff alarm."
   type        = bool
   default     = true
@@ -366,7 +439,13 @@ variable "network_transmit_throughput_evaluation_periods" {
   default     = 10
 }
 
-variable "page_life_expectancy_actions_enabled" {
+variable "page_life_expectancy_static_actions_enabled" {
+  description = "Switch to enable all actions defined for page-life-expectancy-diff alarm."
+  type        = bool
+  default     = true
+}
+
+variable "page_life_expectancy_anomaly_actions_enabled" {
   description = "Switch to enable all actions defined for page-life-expectancy-diff alarm."
   type        = bool
   default     = true
@@ -426,8 +505,8 @@ variable "read_throughput_evaluation_periods" {
   default     = 10
 }
 
-variable "recompilations_per_second_actions_enabled" {
-  description = "Switch to enable all actions defined for recompilations-per-second-diff alarm."
+variable "recompilations_per_second_static_actions_enabled" {
+  description = "Switch to enable all actions defined for recompilations per second static alarm."
   type        = bool
   default     = true
 }
@@ -491,6 +570,12 @@ variable "temp_db_available_log_space_threshold" {
   default     = 1000000000 #1G
 }
 
+variable "temp_db_data_file_usage_high_actions_enabled" {
+  description = "Switch to enable all actions defined for temp data file usage alarm."
+  type        = bool
+  default     = true
+}
+
 variable "temp_db_data_file_usage_evaluation_periods" {
   description = "The number of periods threshold must be breached to alarm."
   type        = number
@@ -544,3 +629,6 @@ variable "write_throughput_evaluation_periods" {
   type        = number
   default     = 10
 }
+
+
+
